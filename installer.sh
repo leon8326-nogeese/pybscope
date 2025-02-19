@@ -11,22 +11,15 @@ fi
 # Create ~/.nogeese directory if it doesn't exist
 mkdir -p ~/.nogeese/pybscope
 
-# Clone the repository only if it doesn't exist
-if [ ! -d ~/.nogeese/pybscope/src ]; then
-    git clone https://github.com/leon8326-nogeese/pybscope.git ~/.nogeese/pybscope/src
-else
-    cd ~/.nogeese/pybscope/src && git pull
-fi
-
 # Create a virtual environment
-python3 -m venv ~/.nogeese/pybscope/env
+python3 -m venv ~/.nogeese/pybscope/env/pybscope-env
 
 # Activate the virtual environment
-source ~/.nogeese/pybscope/env/bin/activate
+source ~/.nogeese/pybscope/env/pybscope-env/bin/activate
 
-# Upgrade pip and install from local source
+# Upgrade pip and install pybscope from PyPI
 pip install --upgrade pip
-pip install ~/.nogeese/pybscope/src
+pip install pybscope
 
 # Reload bash config (if necessary)
 if [ -f ~/.bashrc ]; then
@@ -37,5 +30,6 @@ clear
 echo "Installation successful!"
 echo "Now you can add scripts (example: 'from pybscope.example import say')"
 echo "Run 'pybscope' to integrate it into your builds."
-
+echo "Also if you want to get into it's environment run 'pybscope env'."
+echo "And to get out of it: 'pybscope env-get-out'." 
 exec "$SHELL"
