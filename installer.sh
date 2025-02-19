@@ -9,7 +9,7 @@ if ! command -v git &> /dev/null || ! command -v python3 &> /dev/null; then
 fi
 
 # Create ~/.nogeese directory if it doesn't exist
-mkdir -p ~/.nogeese/pybscope
+mkdir -p ~/.nogeese/pybscope/env
 
 # Create a virtual environment
 python3 -m venv ~/.nogeese/pybscope/env/pybscope-env
@@ -21,6 +21,13 @@ source ~/.nogeese/pybscope/env/pybscope-env/bin/activate
 pip install --upgrade pip
 pip install pybscope
 
+# Download source
+if [ -f ~/.nogeese/pybscope/src ]; then
+    cd ~/.nogeese/pybscope/src
+    git pull
+else
+    git clone https://github.com/leon8326-nogeese/pybscope.git ~/.nogeese/pybscope/src -b src
+fi
 # Reload bash config (if necessary)
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
