@@ -1,4 +1,4 @@
-# pybscope
+# pybscope (source)
 Pybscope is an extension pack for pybricks.
 
 ## Installation
